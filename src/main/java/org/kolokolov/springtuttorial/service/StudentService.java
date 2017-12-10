@@ -1,6 +1,6 @@
 package org.kolokolov.springtuttorial.service;
 
-import org.kolokolov.springtuttorial.model.StudGroup;
+import org.kolokolov.springtuttorial.model.Group;
 import org.kolokolov.springtuttorial.model.GroupTitle;
 import org.kolokolov.springtuttorial.model.Student;
 import org.kolokolov.springtuttorial.repository.GroupRepository;
@@ -20,14 +20,14 @@ public class StudentService {
     }
 
     public void createGroups() {
-        StudGroup epa02 = new StudGroup(GroupTitle.EPA, "02",Arrays.asList(
+        Group epa02 = new Group(GroupTitle.EPA, "02",Arrays.asList(
                 new Student("Алексей Колоколов"),
-                new Student("Сергей Мелецеий")
+                new Student("Сергей Мелецкий")
         ));
         groupRepository.save(epa02);
     }
 
-    public List<StudGroup> getAllGroups() {
+    public List<Group> getAllGroups() {
         return groupRepository.findAll();
     }
 }

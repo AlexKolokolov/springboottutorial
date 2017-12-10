@@ -14,7 +14,8 @@ public class Student {
 
     @ManyToOne
     @JsonBackReference
-    private StudGroup studGroup;
+    @JoinColumn(name = "stud_group_id")
+    private Group group;
 
     public Student() {}
 
@@ -26,8 +27,8 @@ public class Student {
         this.id = id;
     }
 
-    public void setStudGroup(StudGroup studGroup) {
-        this.studGroup = studGroup;
+    public void setGroup(Group group) {
+        this.group = group;
     }
 
     public Long getId() {
@@ -38,12 +39,12 @@ public class Student {
         return name;
     }
 
-    public StudGroup getStudGroup() {
-        return studGroup;
+    public Group getGroup() {
+        return group;
     }
 
     @Override
     public String toString() {
-        return String.format("#%d : %s [%s]", id, name, studGroup);
+        return String.format("#%d : %s [%s]", id, name, group);
     }
 }

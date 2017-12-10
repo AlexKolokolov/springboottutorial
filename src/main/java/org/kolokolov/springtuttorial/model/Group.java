@@ -6,7 +6,8 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-public class StudGroup {
+@Table(name = "stud_group")
+public class Group {
 
     @Id
     @GeneratedValue
@@ -14,18 +15,20 @@ public class StudGroup {
 
     @Enumerated(EnumType.STRING)
     private GroupTitle title;
-    private String groupYear;
+
+    @Column(name = "group_year")
+    private String year;
 
     @OneToMany(cascade = CascadeType.PERSIST)
-    @JsonManagedReference
     @JoinColumn(name = "stud_group_id")
+    @JsonManagedReference
     private List<Student> students;
 
-    public StudGroup() {}
+    public Group() {}
 
-    public StudGroup(GroupTitle title, String groupYear, List<Student> students) {
+    public Group(GroupTitle title, String year, List<Student> students) {
         this.title = title;
-        this.groupYear = groupYear;
+        this.year = year;
         this.students = students;
     }
 
@@ -41,8 +44,8 @@ public class StudGroup {
         return title;
     }
 
-    public String getGroupYear() {
-        return groupYear;
+    public String getYear() {
+        return year;
     }
 
     public List<Student> getStudents() {
@@ -55,6 +58,6 @@ public class StudGroup {
 
     @Override
     public String toString() {
-        return String.format("[%d] : %s - %s", id, title.getTitle(), groupYear);
+        return String.format("#%d : %s-%s", id, title.getTitle(), year);
     }
 }
