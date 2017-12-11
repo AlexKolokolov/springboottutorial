@@ -13,4 +13,11 @@ public enum GroupTitle {
     public String getTitle() {
         return title;
     }
+
+    public static GroupTitle parseStringTitle(String sTitle) {
+        for (GroupTitle title: GroupTitle.values()) {
+            if (title.getTitle().equals(sTitle)) return title;
+        }
+        throw new IllegalArgumentException(String.format("No title for string [%s] found",sTitle));
+    }
 }
