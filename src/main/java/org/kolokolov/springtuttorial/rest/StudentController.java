@@ -33,7 +33,7 @@ public class StudentController {
             logger.debug("Fetched groups : {}", groups);
         } else {
             logger.debug("Trying to find groups by title: {}",title);
-            groups = studentService.findGroupsByTitle(title);
+            groups = studentService.getGroupsByTitle(title);
             logger.debug("Fetched groups : {}", groups);
             return groups;
         }
@@ -43,7 +43,7 @@ public class StudentController {
     @RequestMapping("groups/{id}")
     public Group getGroupById(@PathVariable long id) {
         logger.debug("Trying to find group by id: {}",id);
-        Group group = studentService.findGroupById(id);
+        Group group = studentService.getGroupById(id);
         logger.debug("Fetched group : {}", group);
         return group;
     }

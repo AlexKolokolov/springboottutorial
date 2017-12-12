@@ -2,59 +2,13 @@ package org.kolokolov.springtuttorial.service;
 
 import org.kolokolov.springtuttorial.model.Group;
 import org.kolokolov.springtuttorial.model.GroupTitle;
-import org.kolokolov.springtuttorial.model.Student;
-import org.kolokolov.springtuttorial.repository.GroupRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.List;
 
-@Service
-public class StudentService {
+public interface StudentService {
+    List<Group> getAllGroups();
 
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
+    Group getGroupById(long id);
 
-    private final GroupRepository groupRepository;
-
-    public StudentService(GroupRepository groupRepository) {
-        this.groupRepository = groupRepository;
-        createGroups();
-    }
-
-    public void createGroups() {
-        Group epa02 = new Group(GroupTitle.EPA, "02",Arrays.asList(
-                new Student("Алексей Колоколов"),
-                new Student("Сергей Мелецкий")
-        ));
-        groupRepository.save(epa02);
-        Group epa06 = new Group(GroupTitle.EPA, "06",Arrays.asList(
-                new Student("Алексей Кравченко"),
-                new Student("Николай Чалый")
-        ));
-        groupRepository.save(epa06);
-        Group tgpv03 = new Group(GroupTitle.TGPV, "03",Arrays.asList(
-                new Student("Марина Пыжик"),
-                new Student("Анна Кацило")
-        ));
-        groupRepository.save(tgpv03);
-    }
-
-    public List<Group> getAllGroups() {
-        return groupRepository.findAll();
-    }
-
-    public Group findGroupById(long id) {
-        Group group = groupRepository.findOne(id);
-        logger.debug("Group found : {}",group);
-        return group;
-    }
-
-    public List<Group> findGroupsByTitle(GroupTitle title) {
-        logger.debug("Trying to find groups by title : {}", title);
-        List<Group> groups = groupRepository.findGroupsByTitle(title);
-        logger.debug("Groups found : {}",groups);
-        return groups;
-    }
+    List<Group> getGroupsByTitle(GroupTitle title);
 }
