@@ -1,5 +1,7 @@
 package org.kolokolov.springboottutorial.test;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.json.JSONStringer;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.kolokolov.springtuttorial.Application;
@@ -9,6 +11,7 @@ import org.kolokolov.springtuttorial.rest.StudentController;
 import org.kolokolov.springtuttorial.security.SecurityConfig;
 import org.kolokolov.springtuttorial.service.StudentService;
 import org.mockito.BDDMockito;
+import org.skyscreamer.jsonassert.JSONParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,8 +43,6 @@ public class StudentControllerTest {
             new Group(1L, GroupTitle.EPA, "01", null)
     );
 
-    private final String resultJSON = "[{\"id\":1,\"title\":\"EPA\",\"year\":\"01\",\"students\":null}]";
-
     @Autowired
     private MockMvc mvc;
 
@@ -71,6 +72,8 @@ public class StudentControllerTest {
     @Test
     public void testGetAllGroupsWithCookie() throws Exception {
         BDDMockito.given(studentService.getAllGroups()).willReturn(groups);
+        String resultJSON = new ObjectMapper().writeValueAsString(groups);
+        logger.debug("Expected JSON : {}",resultJSON);
         MvcResult res = mvc.perform(formLogin("/login").user("user").password("user")).andReturn();
         MockHttpSession session = (MockHttpSession) res.getRequest().getSession();
         mvc.perform(get("/rest/groups").session(session))
