@@ -22,6 +22,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestBuilders.*;
@@ -37,7 +38,7 @@ public class StudentControllerTest {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    private final List<Group> groups = Arrays.asList(
+    private final List<Group> groups = Collections.singletonList(
             new Group(1L, GroupTitle.EPA, "01", null)
     );
 
