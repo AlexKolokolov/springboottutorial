@@ -29,6 +29,8 @@ public class StudentServiceImpl implements StudentService {
                 new Student("Сергей Мелецкий")
         ));
         groupRepository.save(epa02);
+        Group epa03 = new Group(GroupTitle.EPA, "03",null);
+        groupRepository.save(epa03);
         Group epa06 = new Group(GroupTitle.EPA, "06",Arrays.asList(
                 new Student("Алексей Кравченко"),
                 new Student("Николай Чалый")

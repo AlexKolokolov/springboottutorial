@@ -32,6 +32,13 @@ public class Group {
         this.students = students;
     }
 
+    public Group(Long id, GroupTitle title, String year, List<Student> students) {
+        this.id = id;
+        this.title = title;
+        this.year = year;
+        this.students = students;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
