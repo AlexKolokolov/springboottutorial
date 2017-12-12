@@ -1,7 +1,6 @@
 package org.kolokolov.springboottutorial.test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.json.JSONStringer;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.kolokolov.springtuttorial.Application;
@@ -11,7 +10,6 @@ import org.kolokolov.springtuttorial.rest.StudentController;
 import org.kolokolov.springtuttorial.security.SecurityConfig;
 import org.kolokolov.springtuttorial.service.StudentService;
 import org.mockito.BDDMockito;
-import org.skyscreamer.jsonassert.JSONParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
