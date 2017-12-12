@@ -49,8 +49,13 @@ public class StudentControllerTest {
     private StudentService studentService;
 
     @Test
-    public void testDignIn() throws Exception {
+    public void testSignIn() throws Exception {
         mvc.perform(formLogin("/login").user("user").password("user")).andExpect(authenticated());
+    }
+
+    @Test
+    public void testFailedSignIn() throws Exception {
+        mvc.perform(formLogin("/login").user("user").password("wrongPassword")).andExpect(unauthenticated());
     }
 
     @Test
