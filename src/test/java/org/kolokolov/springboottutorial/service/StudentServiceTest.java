@@ -17,6 +17,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.junit.Assert.*;
 
+import java.util.Collections;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
@@ -32,7 +33,7 @@ public class StudentServiceTest extends TestUtils {
     private void initMockRepo() {
         BDDMockito.when(groupRepository.findGroupsByTitle(GroupTitle.EPA)).thenReturn(groups);
         BDDMockito.when(groupRepository.findAll()).thenReturn(groups);
-        BDDMockito.when(groupRepository.findGroupsByTitle(GroupTitle.TGPV)).thenReturn(null);
+        BDDMockito.when(groupRepository.findGroupsByTitle(GroupTitle.TGPV)).thenReturn(Collections.emptyList());
         BDDMockito.when(groupRepository.findOne(1L)).thenReturn(group);
     }
 
@@ -45,6 +46,12 @@ public class StudentServiceTest extends TestUtils {
     public void testGetGroupsByTitle() {
         List<Group> result = studentService.getGroupsByTitle(GroupTitle.EPA);
         assertEquals(groups,result);
+    }
+
+    @Test
+    public void testGetNonexistentGroupsByTitle() {
+        List<Group> result = studentService.getGroupsByTitle(GroupTitle.TGPV);
+        assertEquals(Collections.emptyList(),result);
     }
 
     @Test
