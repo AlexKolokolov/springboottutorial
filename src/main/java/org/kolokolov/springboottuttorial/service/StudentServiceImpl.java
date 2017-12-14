@@ -1,9 +1,9 @@
-package org.kolokolov.springtuttorial.service;
+package org.kolokolov.springboottuttorial.service;
 
-import org.kolokolov.springtuttorial.model.Group;
-import org.kolokolov.springtuttorial.model.GroupTitle;
-import org.kolokolov.springtuttorial.model.Student;
-import org.kolokolov.springtuttorial.repository.GroupRepository;
+import org.kolokolov.springboottuttorial.model.Group;
+import org.kolokolov.springboottuttorial.model.GroupTitle;
+import org.kolokolov.springboottuttorial.model.Student;
+import org.kolokolov.springboottuttorial.repository.GroupRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -16,7 +16,7 @@ public class StudentServiceImpl implements StudentService {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    private final GroupRepository groupRepository;
+    private GroupRepository groupRepository;
 
     public StudentServiceImpl(GroupRepository groupRepository) {
         this.groupRepository = groupRepository;

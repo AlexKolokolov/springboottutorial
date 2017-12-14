@@ -1,14 +1,13 @@
-package org.kolokolov.springboottutorial.test;
+package org.kolokolov.springboottutorial.rest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.kolokolov.springtuttorial.Application;
-import org.kolokolov.springtuttorial.model.Group;
-import org.kolokolov.springtuttorial.model.GroupTitle;
-import org.kolokolov.springtuttorial.rest.StudentController;
-import org.kolokolov.springtuttorial.security.SecurityConfig;
-import org.kolokolov.springtuttorial.service.StudentService;
+import org.kolokolov.springboottuttorial.Application;
+import org.kolokolov.springboottuttorial.rest.StudentController;
+import org.kolokolov.springboottuttorial.security.SecurityConfig;
+import org.kolokolov.springboottuttorial.service.StudentService;
+import org.kolokolov.springboottutorial.testutils.TestUtils;
 import org.mockito.BDDMockito;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,10 +20,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestBuilders.*;
 import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -34,19 +29,15 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @WebMvcTest(StudentController.class)
 @ContextConfiguration(classes={Application.class, SecurityConfig.class})
-public class StudentControllerTest {
+public class StudentControllerTest extends TestUtils {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    private final List<Group> groups = Collections.singletonList(
-            new Group(1L, GroupTitle.EPA, "01", null)
-    );
+    @MockBean
+    private StudentService studentService;
 
     @Autowired
     private MockMvc mvc;
-
-    @MockBean
-    private StudentService studentService;
 
     @Test
     public void testSignIn() throws Exception {
@@ -70,7 +61,7 @@ public class StudentControllerTest {
 
     @Test
     public void testGetAllGroupsWithCookie() throws Exception {
-        BDDMockito.given(studentService.getAllGroups()).willReturn(groups);
+        BDDMockito.when(studentService.getAllGroups()).thenReturn(groups);
         String resultJSON = new ObjectMapper().writeValueAsString(groups);
         logger.debug("Expected JSON : {}",resultJSON);
         MvcResult res = mvc.perform(formLogin("/login").user("user").password("user")).andReturn();

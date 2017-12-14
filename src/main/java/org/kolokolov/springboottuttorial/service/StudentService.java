@@ -1,7 +1,7 @@
-package org.kolokolov.springtuttorial.service;
+package org.kolokolov.springboottuttorial.service;
 
-import org.kolokolov.springtuttorial.model.Group;
-import org.kolokolov.springtuttorial.model.GroupTitle;
+import org.kolokolov.springboottuttorial.model.Group;
+import org.kolokolov.springboottuttorial.model.GroupTitle;
 
 import java.util.List;
 

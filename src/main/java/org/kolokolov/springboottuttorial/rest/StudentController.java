@@ -1,8 +1,8 @@
-package org.kolokolov.springtuttorial.rest;
+package org.kolokolov.springboottuttorial.rest;
 
-import org.kolokolov.springtuttorial.model.Group;
-import org.kolokolov.springtuttorial.model.GroupTitle;
-import org.kolokolov.springtuttorial.service.StudentService;
+import org.kolokolov.springboottuttorial.model.Group;
+import org.kolokolov.springboottuttorial.model.GroupTitle;
+import org.kolokolov.springboottuttorial.service.StudentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.PathVariable;

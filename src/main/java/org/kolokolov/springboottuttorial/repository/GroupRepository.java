@@ -1,7 +1,7 @@
-package org.kolokolov.springtuttorial.repository;
+package org.kolokolov.springboottuttorial.repository;
 
-import org.kolokolov.springtuttorial.model.Group;
-import org.kolokolov.springtuttorial.model.GroupTitle;
+import org.kolokolov.springboottuttorial.model.Group;
+import org.kolokolov.springboottuttorial.model.GroupTitle;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

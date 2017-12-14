@@ -1,4 +1,4 @@
-package org.kolokolov.springtuttorial.model;
+package org.kolokolov.springboottuttorial.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
