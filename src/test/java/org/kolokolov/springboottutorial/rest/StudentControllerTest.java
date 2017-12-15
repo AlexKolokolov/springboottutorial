@@ -7,7 +7,7 @@ import org.kolokolov.springboottuttorial.Application;
 import org.kolokolov.springboottuttorial.rest.StudentController;
 import org.kolokolov.springboottuttorial.security.SecurityConfig;
 import org.kolokolov.springboottuttorial.service.StudentService;
-import org.kolokolov.springboottutorial.testutils.TestUtils;
+import org.kolokolov.springboottutorial.testutils.TestConstants;
 import org.mockito.BDDMockito;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,7 +29,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @WebMvcTest(StudentController.class)
 @ContextConfiguration(classes={Application.class, SecurityConfig.class})
-public class StudentControllerTest extends TestUtils {
+public class StudentControllerTest implements TestConstants {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -41,22 +41,26 @@ public class StudentControllerTest extends TestUtils {
 
     @Test
     public void testSignIn() throws Exception {
-        mvc.perform(formLogin("/login").user("user").password("user")).andExpect(authenticated());
+        mvc.perform(formLogin("/login").user("user").password("user"))
+                .andExpect(authenticated());
     }
 
     @Test
     public void testFailedSignIn() throws Exception {
-        mvc.perform(formLogin("/login").user("user").password("wrongPassword")).andExpect(unauthenticated());
+        mvc.perform(formLogin("/login").user("user").password("wrongPassword"))
+                .andExpect(unauthenticated());
     }
 
     @Test
     public void testRoot() throws Exception {
-        mvc.perform(get("/")).andExpect(status().isOk());
+        mvc.perform(get("/"))
+                .andExpect(status().isOk());
     }
 
     @Test
     public void testGetAllGroups() throws Exception {
-        mvc.perform(get("/rest/groups")).andExpect(status().is3xxRedirection());
+        mvc.perform(get("/rest/groups"))
+                .andExpect(status().is3xxRedirection());
     }
 
     @Test

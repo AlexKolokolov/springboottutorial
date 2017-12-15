@@ -6,9 +6,9 @@ import org.kolokolov.springboottuttorial.model.GroupTitle;
 import java.util.Collections;
 import java.util.List;
 
-public class TestUtils {
+public interface TestConstants {
 
-    protected final Group group = new Group(1L, GroupTitle.EPA, "01", Collections.EMPTY_LIST);
+    Group group = new Group(1L, GroupTitle.EPA, "01", Collections.EMPTY_LIST);
 
-    protected final List<Group> groups = Collections.singletonList(group);
+    List<Group> groups = Collections.singletonList(group);
 }

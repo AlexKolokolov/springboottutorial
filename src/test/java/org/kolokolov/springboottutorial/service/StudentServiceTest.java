@@ -6,7 +6,7 @@ import org.junit.runner.RunWith;
 import org.kolokolov.springboottuttorial.Application;
 import org.kolokolov.springboottuttorial.model.Group;
 import org.kolokolov.springboottuttorial.model.GroupTitle;
-import org.kolokolov.springboottutorial.testutils.TestUtils;
+import org.kolokolov.springboottutorial.testutils.TestConstants;
 import org.kolokolov.springboottuttorial.repository.GroupRepository;
 import org.kolokolov.springboottuttorial.service.StudentServiceImpl;
 import org.mockito.BDDMockito;
@@ -22,7 +22,7 @@ import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
-public class StudentServiceTest extends TestUtils {
+public class StudentServiceTest implements TestConstants {
 
     @MockBean
     private GroupRepository groupRepository;
