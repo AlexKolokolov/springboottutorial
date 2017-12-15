@@ -8,7 +8,7 @@ import java.util.List;
 
 public class TestUtils {
 
-    protected final Group group = new Group(1L, GroupTitle.EPA, "01", null);
+    protected final Group group = new Group(1L, GroupTitle.EPA, "01", Collections.EMPTY_LIST);
 
     protected final List<Group> groups = Collections.singletonList(group);
 }
